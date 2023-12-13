@@ -1,0 +1,67 @@
+/*Create  a  class  Employee  having  data  members  empID,  name,  salary  and experience. Using array of objects print the above data. */
+
+import java.util.Scanner;
+
+class Employee {
+    int empID;
+    String name;
+    double salary;
+    int experience;
+
+    public Employee(int empID, String name, double salary, int experience) {
+        this.empID = empID;
+        this.name = name;
+        this.salary = salary;
+        this.experience = experience;
+    }
+
+    public void printDetails() {
+        System.out.println("Employee ID: " + empID);
+        System.out.println("Name: " + name);
+        System.out.println("Salary: " + salary);
+        System.out.println("Experience: " + experience + " years");
+        System.out.println("----------------------");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create an array of Employee objects to store details of multiple employees
+        Employee[] employees = new Employee[3];
+
+        // Input details for each employee
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Enter details for Employee " + (i + 1));
+
+            System.out.print("Employee ID: ");
+            int empID = scanner.nextInt();
+
+            // Consume the newline character left in the buffer after reading the int
+            scanner.nextLine();
+
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Salary: ");
+            double salary = scanner.nextDouble();
+
+            System.out.print("Experience (in years): ");
+            int experience = scanner.nextInt();
+
+            scanner.nextLine(); // Consume the newline character left in the buffer
+
+            // Create an Employee object and store it in the array
+            employees[i] = new Employee(empID, name, salary, experience);
+        }
+
+        // Print details of all employees
+        System.out.println("Details of all employees:");
+        for (Employee employee : employees) {
+            employee.printDetails();
+        }
+
+        scanner.close();
+    }
+}

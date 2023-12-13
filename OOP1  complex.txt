@@ -1,0 +1,72 @@
+/**
+ Design a class ‘Complex ‘with data members for real and imaginary part. Provide default and Parameterized constructors. Write a program to perform arithmetic operations of two complex numbers
+*/
+
+
+//class
+class Complex
+{
+    //instance variables
+    int r;
+    int i;
+    //deafult constructor
+    Complex()
+    {
+    
+    }
+    //parametrized construcyot
+    Complex(int r, int i)
+    {
+        this.r=r;
+        this.i=i;
+    }
+    //methods declare
+    //addition
+    Complex add(Complex c)
+    {
+        return new Complex(this.r+c.r,this.i+c.i);
+    }
+    //subtrction
+    Complex subtract(Complex c)
+    {
+        return new Complex(this.r-c.r,this.i-c.i);
+    }
+    //multplication
+    Complex multiply(Complex c)
+    {
+        int newReal=(this.r*c.r-this.i*c.i);
+        int newImaginary=(this.r*c.i+this.i*c.r);
+        return new Complex(newReal,newImaginary);
+    }
+    //division
+    Complex divide(Complex c)
+    {
+        int denominator=c.r*c.r+c.i*c.i;
+        int newReal=(this.r*c.r+this.i*c.i);
+        int newImaginary=(this.i*c.r-this.r*c.i);
+        return new Complex(newReal,newImaginary);
+    }
+    //display
+    void display()
+    {
+        System.out.println(this.r+"+"+this.i+"i");
+    }
+    //main method
+    public static void main(String[]args)
+    {
+        //object 1
+        Complex c1=new Complex(2,6);
+        //object 2
+        Complex c2=new Complex(3,5);
+        //asign methoda
+        Complex sum=c1.add(c2);
+        Complex difference=c1.subtract(c2);
+        Complex product=c1.multiply(c2);
+        Complex division=c1.divide(c2);
+        //display
+        sum.display();
+        difference.display();
+        product.display();
+        division.display();
+    }
+}

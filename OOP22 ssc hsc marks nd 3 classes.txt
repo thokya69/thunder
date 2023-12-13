@@ -1,0 +1,136 @@
+/**Create a class Student having abstract member functions to get name, SSC marks, HSC marks, create 3 classes Harish, Jayant and Vijay who extend Student class and implement the abstract methods and print the student detail
+*/
+
+import java.util.Scanner;
+
+abstract class Student {
+    abstract String getName();
+    abstract int getSSCMarks();
+    abstract int getHSCMarks();
+}
+
+class Harish extends Student {
+    private String name;
+    private int sscMarks;
+    private int hscMarks;
+
+    Harish(String name, int sscMarks, int hscMarks) {
+        this.name = name;
+        this.sscMarks = sscMarks;
+        this.hscMarks = hscMarks;
+    }
+
+    @Override
+    String getName() {
+        return name;
+    }
+
+    @Override
+    int getSSCMarks() {
+        return sscMarks;
+    }
+
+    @Override
+    int getHSCMarks() {
+        return hscMarks;
+    }
+}
+
+class Jayant extends Student {
+    private String name;
+    private int sscMarks;
+    private int hscMarks;
+
+    Jayant(String name, int sscMarks, int hscMarks) {
+        this.name = name;
+        this.sscMarks = sscMarks;
+        this.hscMarks = hscMarks;
+    }
+
+    @Override
+    String getName() {
+        return name;
+    }
+
+    @Override
+    int getSSCMarks() {
+        return sscMarks;
+    }
+
+    @Override
+    int getHSCMarks() {
+        return hscMarks;
+    }
+}
+
+class Vijay extends Student {
+    private String name;
+    private int sscMarks;
+    private int hscMarks;
+
+    Vijay(String name, int sscMarks, int hscMarks) {
+        this.name = name;
+        this.sscMarks = sscMarks;
+        this.hscMarks = hscMarks;
+    }
+
+    @Override
+    String getName() {
+        return name;
+    }
+
+    @Override
+    int getSSCMarks() {
+        return sscMarks;
+    }
+
+    @Override
+    int getHSCMarks() {
+        return hscMarks;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Student harish = createStudent(scanner, "Harish");
+    Student jayant = createStudent(scanner, "Jayant");
+    Student vijay = createStudent(scanner, "Vijay");
+
+
+        printStudentDetails(harish);
+        printStudentDetails(jayant);
+        printStudentDetails(vijay);
+
+        scanner.close();
+    }
+
+    private static Student createStudent(Scanner scanner, String studentName) {
+        System.out.println("Enter details for " + studentName + ":");
+        System.out.print("Enter name: ");
+        String name = scanner.next();
+        System.out.print("Enter SSC marks: ");
+        int sscMarks = scanner.nextInt();
+        System.out.print("Enter HSC marks: ");
+        int hscMarks = scanner.nextInt();
+
+        switch (studentName.toLowerCase()) {
+            case "harish":
+                return new Harish(name, sscMarks, hscMarks);
+            case "jayant":
+                return new Jayant(name, sscMarks, hscMarks);
+            case "vijay":
+                return new Vijay(name, sscMarks, hscMarks);
+            default:
+                throw new IllegalArgumentException("Invalid student name: " + studentName);
+        }
+    }
+
+    private static void printStudentDetails(Student student) {
+        System.out.println("\nStudent Details:");
+        System.out.println("Name: " + student.getName());
+        System.out.println("SSC Marks: " + student.getSSCMarks());
+        System.out.println("HSC Marks: " + student.getHSCMarks());
+    }
+}

@@ -1,0 +1,142 @@
+/**Implement Factory design pattern for the given context. Consider Car building process,  which  requires  many  steps  from  allocating  accessories  to  final makeup. These steps should be written as methods and should be called while creating an instance of a specific car type. Hatchback, Sedan, SUV could be the subclasses  of  Car  class.  Car  class  and  its  subclasses,  CarFactory  and Test Factory Pattern should be implemented. 
+*/
+
+import java.util.Scanner;
+
+// Car.java
+abstract class Car {
+    protected String model;
+
+    public abstract void allocateAccessories();
+
+    public abstract void assembleParts();
+
+    public abstract void applyPaint();
+
+    public abstract void finalizeMakeup();
+
+    public String getModel() {
+        return model;
+    }
+}
+
+// Hatchback.java
+class Hatchback extends Car {
+    public Hatchback() {
+        this.model = "Hatchback";
+    }
+
+    
+    public void allocateAccessories() {
+        System.out.println("Allocating hatchback accessories.");
+    }
+
+    
+    public void assembleParts() {
+        System.out.println("Assembling hatchback parts.");
+    }
+
+    
+    public void applyPaint() {
+        System.out.println("Applying hatchback paint.");
+    }
+
+    
+    public void finalizeMakeup() {
+        System.out.println("Finalizing hatchback makeup.");
+    }
+}
+
+// Sedan.java
+class Sedan extends Car {
+    public Sedan() {
+        this.model = "Sedan";
+    }
+
+   
+    public void allocateAccessories() {
+        System.out.println("Allocating sedan accessories.");
+    }
+
+   
+    public void assembleParts() {
+        System.out.println("Assembling sedan parts.");
+    }
+
+    
+    public void applyPaint() {
+        System.out.println("Applying sedan paint.");
+    }
+
+    
+    public void finalizeMakeup() {
+        System.out.println("Finalizing sedan makeup.");
+    }
+}
+
+// SUV.java
+class SUV extends Car {
+    public SUV() {
+        this.model = "SUV";
+    }
+
+    
+    public void allocateAccessories() {
+        System.out.println("Allocating SUV accessories.");
+    }
+
+    
+    public void assembleParts() {
+        System.out.println("Assembling SUV parts.");
+    }
+
+    
+    public void applyPaint() {
+        System.out.println("Applying SUV paint.");
+    }
+
+    
+    public void finalizeMakeup() {
+        System.out.println("Finalizing SUV makeup.");
+    }
+}
+
+// CarFactory.java
+class CarFactory {
+    public Car createCar(String type) {
+        if ("Hatchback".equalsIgnoreCase(type)) {
+            return new Hatchback();
+        } else if ("Sedan".equalsIgnoreCase(type)) {
+            return new Sedan();
+        } else if ("SUV".equalsIgnoreCase(type)) {
+            return new SUV();
+        } else {
+            return null;
+        }
+    }
+}
+
+// TestFactoryPattern.java
+class TestFactoryPattern {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the type of car (Hatchback, Sedan, SUV): ");
+        String carType = scanner.nextLine();
+
+        CarFactory carFactory = new CarFactory();
+        Car car = carFactory.createCar(carType);
+
+        if (car != null) {
+            System.out.println("Building " + car.getModel() + ":");
+            car.allocateAccessories();
+            car.assembleParts();
+            car.applyPaint();
+            car.finalizeMakeup();
+        } else {
+            System.out.println("Invalid car type.");
+        }
+
+        scanner.close();
+    }
+}

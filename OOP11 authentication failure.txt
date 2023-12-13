@@ -1,0 +1,34 @@
+/**Wr i t e   a   p r o g r a m   t o   a c c e p t   t h e   p a s s w o r d   f r o m   u s e r   a n d   t h r o w ‘AuthenticationFailure’ exception if the password is incorrect. 
+*/
+
+import java.util.Scanner;
+
+class AuthenticationFailure extends Exception {
+    public AuthenticationFailure(String message) {
+        super(message);
+    }
+}
+
+class PasswordAuthentication {
+    public static void main(String[] args) {
+        try {
+            authenticateUser(); // Authenticate the user
+            System.out.println("Authentication successful. Welcome!");
+        } catch (AuthenticationFailure e) {
+            System.out.println("Authentication failed. " + e.getMessage());
+        }
+    }
+
+    private static void authenticateUser() throws AuthenticationFailure {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the password: ");
+        String enteredPassword = scanner.nextLine();
+
+        // Replace "yourActualPassword" with the correct password
+        String actualPassword = "secure123";
+
+        if (!enteredPassword.equals(actualPassword)) {
+            throw new AuthenticationFailure("Incorrect password.");
+        }
+    }
+}

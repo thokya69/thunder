@@ -1,0 +1,67 @@
+/***Create a class Android, iOS and BlackBerry which implements interface OS having method void spec(). Using factory design pattern create a class which will create instances of above classes and based on nature of OS respective class method should get called. 
+*/
+
+import java.util.Scanner;
+
+// Define the OS interface
+interface OS {
+    void spec();
+}
+
+// Implement Android OS
+class Android implements OS {
+    
+    public void spec() {
+        System.out.println("Android OS specifications");
+    }
+}
+
+// Implement iOS OS
+class iOS implements OS {
+    
+    public void spec() {
+        System.out.println("iOS specifications");
+    }
+}
+
+// Implement BlackBerry OS
+class BlackBerry implements OS {
+    
+    public void spec() {
+        System.out.println("BlackBerry OS specifications");
+    }
+}
+
+// Factory design pattern
+class OSFactory {
+    static OS createOS(String osType) {
+        switch (osType.toLowerCase()) {
+            case "android":
+                return new Android();
+            case "ios":
+                return new iOS();
+            case "blackberry":
+                return new BlackBerry();
+            default:
+                throw new IllegalArgumentException("Invalid OS type");
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get user input for the OS type
+        System.out.print("Enter the OS type (Android, iOS, BlackBerry): ");
+        String osType = scanner.nextLine();
+
+        // Create an instance based on user input
+        OS os = OSFactory.createOS(osType);
+
+        // Call the spec method of the created OS instance
+        os.spec();
+
+        scanner.close();
+    }
+}

@@ -1,0 +1,48 @@
+/**Implement a generic program using any collection class to count the number of elements in a collection that have a specific property such as even numbers, odd number, prime number and palindromes.
+*/
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class SimpleCollectionPropertyCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        ArrayList<Integer> collection = new ArrayList<>();
+        System.out.println("Enter the elements:");
+
+        for (int i = 0; i < n; i++) {
+            collection.add(scanner.nextInt());
+        }
+
+        System.out.println("Collection: " + collection);
+
+        countAndPrint("Even numbers", collection, x -> x % 2 == 0);
+        countAndPrint("Odd numbers", collection, x -> x % 2 != 0);
+        countAndPrint("Prime numbers", collection, SimpleCollectionPropertyCounter::isPrime);
+        countAndPrint("Palindromes", collection, SimpleCollectionPropertyCounter::isPalindrome);
+
+        scanner.close();
+    }
+
+    private static void countAndPrint(String property, ArrayList<Integer> collection, PropertyChecker checker) {
+        long count = collection.stream().filter(checker::check).count();
+        System.out.println("Number of " + property + ": " + count);
+    }
+
+    private static boolean isPrime(int number) {
+        return number > 1 && java.util.stream.IntStream.range(2, number).noneMatch(i -> number % i == 0);
+    }
+
+    private static boolean isPalindrome(int number) {
+        String numStr = Integer.toString(number);
+        return numStr.equals(new StringBuilder(numStr).reverse().toString());
+    }
+
+    interface PropertyChecker {
+        boolean check(int element);
+    }
+}

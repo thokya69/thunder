@@ -1,0 +1,81 @@
+/*Design and develop inheritance for a given case study, identify objects and relationships and implement inheritance wherever applicable. Employee class hasEmp_name, Emp_id, Address, Mail_id, and Mobile_noas members. Inherit the classes: Programmer, Team Lead, Assistant Project Manager and Project Manager from employee class. Add Basic Pay (BP) as the member of all the inherited classes with 97% of BP as DA, 10 % of BP as HRA, 12% of BP as PF, 0.1% of BP for staff club fund. Generate pay slips for the employees with their gross and net salary.
+*/
+
+class Employee
+{
+    String Emp_name,address,mail_id;
+    double Emp_id,mobile_no,BP,HRA,DA,PF,SC,gross_salary,salary;
+    void salary()
+    {
+        DA=0.97*BP;
+        HRA=0.1*BP;
+        PF=0.12*BP;
+        SC=0.01*BP;
+        gross_salary=DA+HRA+PF+SC+BP;
+        System.out.println("name of employee= "+Emp_name);
+        System.out.println("address of employee= "+address);
+        System.out.println("mail id of employee= "+mail_id);
+        System.out.println("employee id of employee= "+Emp_id);
+        System.out.println("mobile no of employee= "+mobile_no);
+        System.out.println("basic pay of employee= "+BP);
+        System.out.println("HRA of employee= "+HRA);
+        System.out.println("DA of employee= "+DA);
+        System.out.println("PF of employee= "+PF);
+        System.out.println("SC of employee= "+SC);
+        System.out.println("gross salary of employee= "+gross_salary);
+    }
+}
+class Programmer extends Employee
+{
+   Programmer(String n,double e,String a,double BP)
+   {
+       this.Emp_name=n;
+       this.Emp_id=e;
+       this.address=a;
+       this.BP=BP;
+   }
+}
+class TL extends Employee
+{
+    TL(String n,double e,String a,double BP)
+   {
+       this.Emp_name=n;
+       this.Emp_id=e;
+       this.address=a;
+       this.BP=BP;
+   }
+}
+class APM extends Employee
+{
+    APM(String n,double e,String a,double BP)
+   {
+       this.Emp_name=n;
+       this.Emp_id=e;
+       this.address=a;
+       this.BP=BP;
+   }
+}
+class PM extends Employee
+{
+   PM(String n,double e,String a,double BP)
+   {
+       this.Emp_name=n;
+       this.Emp_id=e;
+       this.address=a;
+       this.BP=BP;
+   }
+}
+class Main
+{
+    public static void main(String[]args)
+    {
+        Programmer p=new Programmer("yash",1,"pune",50000);
+        p.salary();
+        TL t=new TL("shreya",2,"mumbai",100000);
+        t.salary();
+        APM a=new APM("ram",3,"goa",25000);
+        a.salary();
+        PM r=new PM("riya",4,"nagpur",50000);
+        r.salary();
+    }
+}

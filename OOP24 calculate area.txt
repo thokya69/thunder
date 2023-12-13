@@ -1,0 +1,98 @@
+/**Interface Area is having method calculateArea(). Calculate the area for the following classes: Square, Circle, Triangle, Rectangle  
+*/
+
+import java.util.Scanner;
+
+interface Area {
+    double calculateArea();
+}
+
+class Square implements Area {
+    private double side;
+
+    public Square(double side) {
+        this.side = side;
+    }
+
+    @Override
+    public double calculateArea() {
+        return side * side;
+    }
+}
+
+class Circle implements Area {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Triangle implements Area {
+    private double base;
+    private double height;
+
+    public Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    @Override
+    public double calculateArea() {
+        return 0.5 * base * height;
+    }
+}
+
+class Rectangle implements Area {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double side = getUserInput("Enter the side length of the square: ", scanner);
+        double radius = getUserInput("Enter the radius of the circle: ", scanner);
+        double base = getUserInput("Enter the base of the triangle: ", scanner);
+        double height = getUserInput("Enter the height of the triangle: ", scanner);
+        double length = getUserInput("Enter the length of the rectangle: ", scanner);
+        double width = getUserInput("Enter the width of the rectangle: ", scanner);
+
+        Square square = new Square(side);
+        Circle circle = new Circle(radius);
+        Triangle triangle = new Triangle(base, height);
+        Rectangle rectangle = new Rectangle(length, width);
+
+        displayArea("Square", square.calculateArea());
+        displayArea("Circle", circle.calculateArea());
+        displayArea("Triangle", triangle.calculateArea());
+        displayArea("Rectangle", rectangle.calculateArea());
+
+        scanner.close();
+    }
+
+    private static double getUserInput(String prompt, Scanner scanner) {
+        System.out.print(prompt);
+        return scanner.nextDouble();
+    }
+
+    private static void displayArea(String shape, double area) {
+        System.out.println("Area of the " + shape + ": " + area);
+    }
+}

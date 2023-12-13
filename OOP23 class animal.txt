@@ -1,0 +1,80 @@
+/**Create a class Animal having three data members eats, noOfLegs, isVeg.Based on  requirement  create  setter-getter  methods  for  each  member.  Class  Cat extends Animal, this class also contains data member skin colour, make use of super keyword and print all the four values. 
+*/
+
+import java.util.Scanner;
+
+class Animal {
+    private String eats;
+    private int noOfLegs;
+    private boolean isVeg;
+
+    public Animal(String eats, int noOfLegs, boolean isVeg) {
+        this.eats = eats;
+        this.noOfLegs = noOfLegs;
+        this.isVeg = isVeg;
+    }
+
+    // Getter and setter methods for each member
+    public String getEats() {
+        return eats;
+    }
+
+    public void setEats(String eats) {
+        this.eats = eats;
+    }
+
+    public int getNoOfLegs() {
+        return noOfLegs;
+    }
+
+    public void setNoOfLegs(int noOfLegs) {
+        this.noOfLegs = noOfLegs;
+    }
+
+    public boolean isVeg() {
+        return isVeg;
+    }
+
+    public void setVeg(boolean veg) {
+        isVeg = veg;
+    }
+}
+
+class Cat extends Animal {
+    private String skinColor;
+
+    public Cat(String eats, int noOfLegs, boolean isVeg, String skinColor) {
+        super(eats, noOfLegs, isVeg);
+        this.skinColor = skinColor;
+    }
+
+    public void printDetails() {
+        System.out.println("Eats: " + getEats());
+        System.out.println("Number of Legs: " + getNoOfLegs());
+        System.out.println("Is Vegetarian: " + isVeg());
+        System.out.println("Skin Color: " + skinColor);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter what the animal eats: ");
+        String eats = scanner.nextLine();
+
+        System.out.print("Enter the number of legs: ");
+        int noOfLegs = scanner.nextInt();
+
+        System.out.print("Is the animal vegetarian? (true/false): ");
+        boolean isVeg = scanner.nextBoolean();
+
+        System.out.print("Enter the skin color of the cat: ");
+        String skinColor = scanner.next();
+
+        Cat cat = new Cat(eats, noOfLegs, isVeg, skinColor);
+        cat.printDetails();
+
+        scanner.close();
+    }
+}

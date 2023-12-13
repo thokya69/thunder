@@ -1,0 +1,66 @@
+/*There are 3 online courses available Python, Data Structures and Java for an online course. Create an interface OnlineCourse having method getDetails(). Using factory design pattern return the OS specific details. 
+*/
+import java.util.Scanner;
+
+// Define the OnlineCourse interface
+interface OnlineCourse {
+    String getDetails();
+}
+
+// Implement Python course
+class PythonCourse implements OnlineCourse {
+   public String getDetails() {
+        return "Details for Python course";
+    }
+}
+
+// Implement Data Structures course
+class DataStructuresCourse implements OnlineCourse {
+   
+    public String getDetails() {
+        return "Details for Data Structures course";
+    }
+}
+
+// Implement Java course
+class JavaCourse implements OnlineCourse {
+    
+    public String getDetails() {
+        return "Details for Java course";
+    }
+}
+
+// Factory design pattern
+class OnlineCourseFactory {
+    static OnlineCourse createCourse(String courseType) {
+        switch (courseType.toLowerCase()) {
+            case "python":
+                return new PythonCourse();
+            case "data structures":
+                return new DataStructuresCourse();
+            case "java":
+                return new JavaCourse();
+            default:
+                throw new IllegalArgumentException("Invalid course type");
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get user input for the course type
+        System.out.print("Enter the course type (Python, Data Structures, Java): ");
+        String courseType = scanner.nextLine();
+
+        // Create an instance based on user input
+        OnlineCourse course = OnlineCourseFactory.createCourse(courseType);
+
+        // Get and print course details
+        String details = course.getDetails();
+        System.out.println(details);
+
+        scanner.close();
+    }
+}

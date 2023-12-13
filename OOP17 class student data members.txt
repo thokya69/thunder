@@ -1,0 +1,59 @@
+
+/**Consider a class Student having data members name, marks of three subjects, average and member function printDetails(). Take input of 3 students from user using array of objects and print it. 
+*/
+import java.util.Scanner;
+
+class Student {
+    String name;
+    double marks1, marks2, marks3, average;
+
+    public Student(String name, double marks1, double marks2, double marks3) {
+        this.name = name;
+        this.marks1 = marks1;
+        this.marks2 = marks2;
+        this.marks3 = marks3;
+        this.average = (marks1 + marks2 + marks3) / 3.0;
+    }
+
+    public void printDetails() {
+        System.out.println("Student Name: " + name);
+        System.out.println("Marks in Subject 1: " + marks1);
+        System.out.println("Marks in Subject 2: " + marks2);
+        System.out.println("Marks in Subject 3: " + marks3);
+        System.out.println("Average Marks: " + average);
+        System.out.println("----------------------");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Student[] students = new Student[3];
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Enter details for Student " + (i + 1));
+
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Marks in Subject 1: ");
+            double marks1 = scanner.nextDouble();
+
+            System.out.print("Marks in Subject 2: ");
+            double marks2 = scanner.nextDouble();
+
+            System.out.print("Marks in Subject 3: ");
+            double marks3 = scanner.nextDouble();
+
+            scanner.nextLine();
+
+            students[i] = new Student(name, marks1, marks2, marks3);
+        }
+
+        System.out.println("Details of all students:");
+        for (Student student : students) student.printDetails();
+
+        scanner.close();
+    }
+}

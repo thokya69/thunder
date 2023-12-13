@@ -1,0 +1,96 @@
+/**Using concepts of Object-Oriented programming develop solution for any one application 1) Banking system having following operations :  
+1.    Create an account 2. Deposit money 3. Withdraw money 4. Honor daily withdrawal limit 5. Check the balance 6. Display Account information. 
+*/
+
+import java.util.Scanner;
+
+class BankAccount {
+    private String accountHolder;
+    private double balance;
+    private double dailyWithdrawalLimit;
+    private double dailyWithdrawalAmount;
+
+    public BankAccount(String accountHolder, double dailyWithdrawalLimit) {
+        this.accountHolder = accountHolder;
+        this.balance = 0.0;
+        this.dailyWithdrawalLimit = dailyWithdrawalLimit;
+        this.dailyWithdrawalAmount = 0.0;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit successful. New balance: " + balance);
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= dailyWithdrawalLimit - dailyWithdrawalAmount && amount <= balance) {
+            balance -= amount;
+            dailyWithdrawalAmount += amount;
+            System.out.println("Withdrawal successful. New balance: " + balance);
+        } else {
+            System.out.println("Withdrawal failed. Exceeded daily limit or insufficient funds.");
+        }
+    }
+
+    public void checkBalance() {
+        System.out.println("Current balance: " + balance);
+    }
+
+    public void displayAccountInfo() {
+        System.out.println("Account Information:");
+        System.out.println("Account Holder: " + accountHolder);
+        System.out.println("Current Balance: " + balance);
+        System.out.println("Daily Withdrawal Limit: " + dailyWithdrawalLimit);
+        System.out.println("Daily Withdrawal Amount Used: " + dailyWithdrawalAmount);
+    }
+}
+
+class SimpleBankingSystem {
+    public static void main(String[] args) {
+        BankAccount bankAccount = new BankAccount("shreya", 500.0);
+
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("\nBanking Operations:");
+            System.out.println("1. Deposit Money");
+            System.out.println("2. Withdraw Money");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Display Account Information");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter deposit amount: ");
+                    double depositAmount = scanner.nextDouble();
+                    bankAccount.deposit(depositAmount);
+                    break;
+
+                case 2:
+                    System.out.print("Enter withdrawal amount: ");
+                    double withdrawalAmount = scanner.nextDouble();
+                    bankAccount.withdraw(withdrawalAmount);
+                    break;
+
+                case 3:
+                    bankAccount.checkBalance();
+                    break;
+
+                case 4:
+                    bankAccount.displayAccountInfo();
+                    break;
+
+                case 5:
+                    System.out.println("Exiting. Thank you!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        } while (choice != 5);
+
+        scanner.close();
+    }
+}
